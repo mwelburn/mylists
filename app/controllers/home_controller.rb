@@ -36,7 +36,7 @@ class HomeController < ApplicationController
     resp.error! unless resp.kind_of? Net::HTTPSuccess
     #render :text => "code: %s\nbody: %s" % [resp.code, resp.body]
 
-    #render :text => resp.body
+    render :text => resp.body
 
     body = resp.body
     parsed_body = ActiveSupport::JSON.decode(body)
