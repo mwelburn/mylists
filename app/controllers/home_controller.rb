@@ -55,7 +55,7 @@ class HomeController < ApplicationController
     end
 
     #render :text => smsArray
-    args = {"From" : twilioPhone, "To" : phone, "Body" : smsArray}
+    args = {"From" => twilioPhone, "To" => phone, "Body" => smsArray}
     resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages", 'POST', args)
     render :text => resp
   end
