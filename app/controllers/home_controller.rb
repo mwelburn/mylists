@@ -32,7 +32,7 @@ class HomeController < ApplicationController
   def twilio
     account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
 
-    resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages",  'GET')
+    resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages.json",  'GET')
     resp.error! unless resp.kind_of? Net::HTTPSuccess
     #render :text => "code: %s\nbody: %s" % [resp.code, resp.body]
 
