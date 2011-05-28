@@ -30,6 +30,8 @@ class HomeController < ApplicationController
   end
 
   def twilio
+    phone =
+
     account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
 
     resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages.json",  'GET')
@@ -48,7 +50,8 @@ class HomeController < ApplicationController
       end
     end
 
-    render :text => smsArray
+    account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages?From=2138634225&To=15743150289&Body=#{smsArray}")
+    #render :text => smsArray
   end
 
 end
