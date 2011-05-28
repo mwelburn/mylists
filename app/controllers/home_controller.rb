@@ -15,7 +15,7 @@ class HomeController < ApplicationController
     if (params[:id])
       user = client.user(params[:id])
     else
-      user = client.user('785079')
+      user = client.user(785079)
     end
     #user = client.user(params[:id])
     #if user
@@ -30,7 +30,9 @@ class HomeController < ApplicationController
 
     resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages.json",  'GET')
     resp.error! unless resp.kind_of? Net::HTTPSuccess
-    render :text => "code: %s\nbody: %s" % [resp.code, resp.body]
+    #render :text => "code: %s\nbody: %s" % [resp.code, resp.body]
+
+    render :text => resp.body
   end
 
 end
