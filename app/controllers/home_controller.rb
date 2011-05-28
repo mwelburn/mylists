@@ -36,13 +36,19 @@ class HomeController < ApplicationController
     resp.error! unless resp.kind_of? Net::HTTPSuccess
     #render :text => "code: %s\nbody: %s" % [resp.code, resp.body]
 
-    render :text => resp.body
+    #render :text => resp.body
 
-#    body = resp.body
-#    parsed_body = ActiveSupport::JSON.decode(body)
-#    parsed_json["SMSMessage"].each do |smsMsg|
-#      render :text => smsMsg
-#    end
+    smsArray = Array.new
+
+    body = resp.body
+    parsed_body = ActiveSupport::JSON.decode(body)
+    parsed_json["sms_messages"].each do |smsMsg|
+      if smsMsg.from == "+15743150289"
+         smsArray << smsMsg.body
+      end
+    end
+
+    render :text => smsArray
   end
 
 end
