@@ -44,7 +44,7 @@ class HomeController < ApplicationController
 
     #render :text => resp.body
 
-    smsArray = Array.new
+    smsArray = ""
 
     body = resp.body
     parsed_body = ActiveSupport::JSON.decode(body)
