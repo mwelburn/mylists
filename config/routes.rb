@@ -51,6 +51,8 @@ Mylists::Application.routes.draw do
   root :to => "home#index"
 
   match '/twilio' => 'home#twilio'
+  match '/foursquare/:id' => 'home#foursquare'
+  match '/foursquare' => 'home#foursquare'
 
   # See how all your routes lay out with "rake routes"
 

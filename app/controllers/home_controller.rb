@@ -10,10 +10,25 @@ class HomeController < ApplicationController
     @hello = "hello"
   end
 
+  def foursquare
+    client = Foursquare2::Client.new(:client_id => '4GI510HOP4UN1RT4F015WKIDH3JHQK3M1KZZV2AQHLMHGC3N', :client_secret => 'JX1YCRAVY4R0P4WUQSCCNWMMPOFGELBQAU2RYU13W4TE4FIK')
+    if (params[:id])
+      user = client.user(params[:id])
+    else
+      user = client.user('785079')
+    end
+    #user = client.user(params[:id])
+    #if user
+    #   @checkins = client.user_checkins(params[:id])
+    #end
+    #@checkins = user.user_checkins
+    render :text => user
+  end
+
   def twilio
     account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
 
-    resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages.json",  'GET', {})
+    resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages.json",  'GET')
     resp.error! unless resp.kind_of? Net::HTTPSuccess
     puts "code: %s\nbody: %s" % [resp.code, resp.body]
   end

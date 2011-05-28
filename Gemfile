@@ -15,6 +15,9 @@ group :development do
   gem 'rdoc'
 end
 
+gem 'faraday', '0.6.1'
+gem 'omniauth', '0.2.2'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
