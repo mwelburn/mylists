@@ -30,7 +30,7 @@ class HomeController < ApplicationController
 
     resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages.json",  'GET')
     resp.error! unless resp.kind_of? Net::HTTPSuccess
-    puts "code: %s\nbody: %s" % [resp.code, resp.body]
+    render :text => "code: %s\nbody: %s" % [resp.code, resp.body]
   end
 
 end
