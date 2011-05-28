@@ -30,7 +30,11 @@ class HomeController < ApplicationController
   end
 
   def twilio
-    phone =
+    phone = "5743150289"
+    if (params[:phone])
+      phone = params[:phone]
+    end
+    twilioPhone = "2138634225"
 
     account = Twilio::RestAccount.new(ACCOUNT_SID, ACCOUNT_TOKEN)
 
@@ -45,12 +49,12 @@ class HomeController < ApplicationController
     body = resp.body
     parsed_body = ActiveSupport::JSON.decode(body)
     parsed_body["sms_messages"].each do |smsMsg|
-      if smsMsg.from == "+15743150289"
+      if smsMsg.from.include? phone
          smsArray << smsMsg.body
       end
     end
 
-    account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages?From=2138634225&To=15743150289&Body=#{smsArray}")
+    account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages?From=#{twilioPhone}&To=#{phone}&Body=#{smsArray}")
     #render :text => smsArray
   end
 

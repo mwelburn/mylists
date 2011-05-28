@@ -50,6 +50,7 @@ Mylists::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => "home#index"
 
+  match '/twilio/:phone' => 'home#twilio'
   match '/twilio' => 'home#twilio'
   match '/foursquare/:id' => 'home#foursquare'
   match '/foursquare' => 'home#foursquare'
