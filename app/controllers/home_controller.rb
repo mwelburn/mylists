@@ -42,7 +42,7 @@ class HomeController < ApplicationController
 
     body = resp.body
     parsed_body = ActiveSupport::JSON.decode(body)
-    parsed_json["sms_messages"].each do |smsMsg|
+    parsed_body["sms_messages"].each do |smsMsg|
       if smsMsg.from == "+15743150289"
          smsArray << smsMsg.body
       end
