@@ -38,11 +38,11 @@ class HomeController < ApplicationController
 
     render :text => resp.body
 
-    body = resp.body
-    parsed_body = ActiveSupport::JSON.decode(body)
-    parsed_json["SMSMessage"].each do |smsMsg|
-      render :text => smsMsg
-    end
+#    body = resp.body
+#    parsed_body = ActiveSupport::JSON.decode(body)
+#    parsed_json["SMSMessage"].each do |smsMsg|
+#      render :text => smsMsg
+#    end
   end
 
 end
