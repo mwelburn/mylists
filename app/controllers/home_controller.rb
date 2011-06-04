@@ -7,30 +7,28 @@ ACCOUNT_TOKEN = '264b643478d06f6d4a165dcb2dbf96f7'
 class HomeController < ApplicationController
 
   def index
-    @hello = "hello"
+    logger.debug session["devise_foursquare_data"]
   end
 
   def foursquare
-    client = Foursquare2::Client.new(:client_id => '4GI510HOP4UN1RT4F015WKIDH3JHQK3M1KZZV2AQHLMHGC3N', :client_secret => 'JX1YCRAVY4R0P4WUQSCCNWMMPOFGELBQAU2RYU13W4TE4FIK')
-    #client = Foursquare2::Client.new(:oauth_token => 'OV4XQWEFQUJIUQTJ40YPR4GNCQGEJZC0EY1LPODQW4YBRODP')
-
-    #userid = 785079
-    userid = 10000273
-    if (params[:id])
-      userid = params[:id]
+    if data = session["devise_foursquare_data"] && session["devise_foursquare_data"]["credentials"]
+      oauth_token = data["token"]
     end
-    user = client.user(userid)
-    #user = client.user(params[:id])
-    #if user
-    #   @checkins = client.user_checkins(params[:id])
-    #end
-    #@checkins = user.user_checkins
+logger.debug session["devise_foursquare_data"]
+    if data = session["devise_foursquare_data"] && session["devise_foursquare_data"]["extra"]["user_hash"]
+      user_id = data["id"]
+    end
+
+    client = Foursquare2::Client.new(:oauth_token => oauth_token)
+
+    user = client.user(params[:id])
+
     render :text => user
-    #render :text => user.user_checkins
   end
 
   def twilio
-    phone = "5743150289"
+#    phone = "5743150289"
+    phone = "6302766871"
     if (params[:phone])
       phone = params[:phone]
     end

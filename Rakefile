@@ -4,4 +4,16 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
+#the following two modules are hacks to get the rakefile to work
+module ::Mylists
+  class Application
+    include Rake::DSL
+  end
+end
+
+module ::RakeFileUtils
+  extend Rake::FileUtilsExt
+end
+
+
 Mylists::Application.load_tasks

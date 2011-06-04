@@ -1,4 +1,8 @@
 Mylists::Application.routes.draw do
+  devise_for :users, :controllers =>{ :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  resources :lists
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -54,6 +58,10 @@ Mylists::Application.routes.draw do
   match '/twilio' => 'home#twilio'
   match '/foursquare/:id' => 'home#foursquare'
   match '/foursquare' => 'home#foursquare'
+
+  devise_scope :user do
+    get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+  end
 
   # See how all your routes lay out with "rake routes"
 
