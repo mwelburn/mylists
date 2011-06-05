@@ -58,6 +58,7 @@ Mylists::Application.routes.draw do
   match '/twilio' => 'home#twilio'
   match '/foursquare/:id' => 'home#foursquare'
   match '/foursquare' => 'home#foursquare'
+  match '/foursquare_checkin' => 'home#foursquare_checkin'
 
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'

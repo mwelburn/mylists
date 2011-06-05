@@ -58,4 +58,21 @@ logger.debug session["devise_foursquare_data"]
     render :text => resp
   end
 
+  def foursquare_checkin
+    json = JSON.parse request.body.string
+
+    foursquare_user_id = json['user']['id']
+    user = User.where(:foursquare_id => foursquare_user_id).first
+
+    categories = json['checkin']['venue']['categories']
+
+    if user.nil?
+      puts "Foursquare user ID #{foursquare_user_id} not found"
+    else
+      #check this user's list and the venue to see what to send them!
+      puts "Foursquare user ID #{foursquare_user_id} checked in #{categories}"
+    end
+
+  end
+
 end
