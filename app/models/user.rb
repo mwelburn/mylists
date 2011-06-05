@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
         user.save!
       end
     else # Create a user with a stub password.
-      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
+      User.create!(:facebook_id => data["id"], :email => data["email"], :phone => data["phone"], :password => Devise.friendly_token[0,20])
     end
   end
 
