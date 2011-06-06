@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     if data = session["devise_foursquare_data"] && session["devise_foursquare_data"]["credentials"]
       oauth_token = data["token"]
     end
-logger.debug session["devise_foursquare_data"]
+#logger.debug session["devise_foursquare_data"]
     if data = session["devise_foursquare_data"] && session["devise_foursquare_data"]["extra"]["user_hash"]
       user_id = data["id"]
     end
