@@ -23,7 +23,8 @@ end
 
 group :test, :production do
 #  gem 'mysql2'
-  gem 'pg'
+#  gem 'pg'
+gem 'sqlite3'
 end
 
 gem 'faraday', '0.6.1'
