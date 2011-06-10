@@ -26,6 +26,12 @@ class HomeController < ApplicationController
     render :text => user
   end
 
+  def test
+    if user_signed_in?
+      redirect_to twilio_path, :phone => current_user.phone
+    end
+  end
+
   def twilio
 #    phone = "5743150289"
     phone = "6302766871"
@@ -71,6 +77,12 @@ class HomeController < ApplicationController
     else
       #check this user's list and the venue to see what to send them!
       puts "Foursquare user ID #{foursquare_user_id} checked in #{categories}"
+    end
+
+    if user.phone
+      redirect_to twilio_path, :phone => user.phone
+    else
+      puts "User doesn't have a registered phone number :("
     end
 
   end

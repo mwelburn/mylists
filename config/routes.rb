@@ -53,7 +53,7 @@ Mylists::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "home#index"
-
+match '/test' => 'home#test'
   match '/twilio/:phone' => 'home#twilio'
   match '/twilio' => 'home#twilio'
   match '/foursquare/:id' => 'home#foursquare'
