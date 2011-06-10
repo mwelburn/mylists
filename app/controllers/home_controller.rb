@@ -29,6 +29,9 @@ class HomeController < ApplicationController
   def test
     if user_signed_in?
       redirect_to twilio_path(:phone => current_user.phone)
+    else
+      flash[:error] = "You must be signed in to test this functionality."
+      redirect_to :root
     end
   end
 
@@ -65,7 +68,7 @@ class HomeController < ApplicationController
     #render :text => smsArray
     args = {"From" => twilioPhone, "To" => phone, "Body" => smsArray}
     resp = account.request("/#{API_VERSION}/Accounts/#{ACCOUNT_SID}/SMS/Messages", 'POST', args)
-    render :text => resp
+    #render :text => resp
   end
 
   def foursquare_checkin
