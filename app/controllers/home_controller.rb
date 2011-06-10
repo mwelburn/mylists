@@ -28,7 +28,7 @@ class HomeController < ApplicationController
 
   def test
     if user_signed_in?
-      redirect_to twilio_path, :phone => current_user.phone
+      redirect_to twilio_path(:phone => current_user.phone)
     end
   end
 
@@ -80,7 +80,7 @@ class HomeController < ApplicationController
     end
 
     if user.phone
-      redirect_to twilio_path, :phone => user.phone
+      redirect_to twilio_path(:phone => user.phone)
     else
       puts "User doesn't have a registered phone number :("
     end
