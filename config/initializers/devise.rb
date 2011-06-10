@@ -1,11 +1,11 @@
-if Rails.env.development?
+#if Rails.env.development?
   foursquare_CLIENT_ID = '4GI510HOP4UN1RT4F015WKIDH3JHQK3M1KZZV2AQHLMHGC3N'
   foursquare_CLIENT_SECRET = 'JX1YCRAVY4R0P4WUQSCCNWMMPOFGELBQAU2RYU13W4TE4FIK'
 
   facebook_APP_ID = '198633203509595'
   facebook_API_KEY = '81b71b62f8ac338153fdacb93271d34a'
   facebook_APP_SECRET = '8125d8419c218d2f8c09a939d551a42b'
-end
+#end
 
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
