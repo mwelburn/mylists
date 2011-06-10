@@ -72,6 +72,11 @@ class HomeController < ApplicationController
   end
 
   def foursquare_checkin
+    if request.body.string.nil? or request.body.string ==''
+      flash[:error] = "You are missing required parameters"
+      return
+    end
+
     json = JSON.parse request.body.string
 
     foursquare_user_id = json['user']['id']
