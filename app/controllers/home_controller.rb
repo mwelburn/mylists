@@ -34,9 +34,13 @@ class HomeController < ApplicationController
 
   def twilio
 #    phone = "5743150289"
-    phone = "6302766871"
+#    phone = "6302766871"
+    phone = nil
     if (params[:phone])
       phone = params[:phone]
+    else
+      puts "No phone number passed in!"
+      return
     end
     twilioPhone = "2138634225"
 
